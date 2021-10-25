@@ -1,11 +1,11 @@
 import React from "react";
+import matter from "gray-matter";
 
 const Blog = (props) => {
   console.log(props);
   return (
     <div>
       <h1>ブログページ</h1>
-      <a>{props.test}</a>
     </div>
   );
 };
@@ -13,10 +13,23 @@ const Blog = (props) => {
 export default Blog;
 
 export async function getStaticProps() {
-  const testText = "Next.jsポートフォリオサイト";
+  const blogs = ((context) => {
+    const keys = context.keys();
+    const values = keys.map(context);
+    const data = keys.map((key, index) => {
+      let slug = key.replace(/^.*[\\\/]/, "").slice(0, -3);
+      const value = values[index];
+      const document = matter(value.default);
+      return {
+        frontmatter: document.data,
+        slug: slug,
+      };
+    });
+    return data;
+  })(require.context("../data", true, /\.md$/));
   return {
     props: {
-      test: testText,
+      blogs: blogs,
     },
   };
 }
