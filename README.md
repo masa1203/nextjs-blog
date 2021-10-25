@@ -30,3 +30,13 @@ except: ""
 これが 1 つめのブログ記事です。
 
 ```
+
+## markdown を React で扱う
+
+```bash
+yarn add raw-loader gray-matter react-markdown
+```
+
+- raw-loader: markdown の読み込み
+- gray-matter: frontmatter 部分の読み込み
+- react-markdown: react コンポーネントでのマークダウン処理
