@@ -3,13 +3,11 @@ import matter from "gray-matter";
 import Link from "next/link";
 
 const Blog = (props) => {
-  console.log(props);
   return (
     <div>
       <h1>ブログページ</h1>
       {props.blogs.map((blog, index) => (
         <div key={index}>
-          {console.log(blog)}
           <h3>{blog.frontmatter.title}</h3>
           <p>{blog.frontmatter.date}</p>
           <Link href={`/blog/${blog.slug}`}>
