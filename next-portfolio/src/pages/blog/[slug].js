@@ -1,14 +1,29 @@
 import React from "react";
 import matter from "gray-matter";
 import ReactMarkdown from "react-markdown";
+import Image from "next/image";
+import Layout from "../../components/layout";
+import * as styles from "../../styles/singleBlog.module.scss";
 
 const SingleBlog = (props) => {
   return (
-    <div>
-      <h1>{props.frontformatter.title}</h1>
-      <p>{props.frontformatter.date}</p>
-      <ReactMarkdown children={props.markdownBody} />
-    </div>
+    <Layout>
+      <div className={styles.hero}>
+        <Image
+          src={props.frontformatter.image}
+          alt="blog-image"
+          height="500"
+          width="1000"
+        />
+      </div>
+      <div className={styles.wrapper}>
+        <div className={styles.container}>
+          <h1>{props.frontformatter.title}</h1>
+          <p>{props.frontformatter.date}</p>
+          <ReactMarkdown children={props.markdownBody} />
+        </div>
+      </div>
+    </Layout>
   );
 };
 
